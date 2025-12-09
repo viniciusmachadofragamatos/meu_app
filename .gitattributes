@@ -1,2 +1,13 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+CMakeLists.txt linguist-generated=true
+*.cmake linguist-generated=true
+*.cpp linguist-generated=true
+*.cc linguist-generated=true
+*.cxx linguist-generated=true
+*.h linguist-generated=true
+*.hpp linguist-generated=true
+*.hh linguist-generated=true
+android/** linguist-generated=true
+ios/** linguist-generated=true
+windows/** linguist-generated=true
+linux/** linguist-generated=true
+macos/** linguist-generated=true
