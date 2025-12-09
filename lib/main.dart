@@ -1,76 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'dart:math' as math;
-
-void main() {
+import 'package:hive/hive.dart';
+import 'package:meu_app/model/dados_cadastrais_model.dart';
+import 'package:meu_app/model/tarefa_hive_model.dart';
+import 'package:meu_app/my_app.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
+void main()async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // Garante que o sistema use o modo normal de UI (sem esconder status bar)
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-
+  var documentsDirectory = await path_provider.getApplicationDocumentsDirectory(); 
+  Hive.init(documentsDirectory.path);
+  Hive.registerAdapter(DadosCadastraisModelAdapter());
+  Hive.registerAdapter(TarefaHiveModelAdapter());
   runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.dark,
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primarySwatch: Colors.red,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.red,
-          foregroundColor: Colors.white,
-          systemOverlayStyle: SystemUiOverlayStyle.light, // cor dos ícones da barra de status
-          elevation: 4, // pequena sombra pra destacar
-          centerTitle: true, // título centralizado
-        ),
-      ),
-      home: const HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-
-  var numeroGerado = 0;
-  int _gerarNumeroAleatorio() {
-    math.Random numeroAleatorio = math.Random();
-    return numeroAleatorio.nextInt(1000);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-        debugPrint("Chamando metodo build");
-    return SafeArea( // evita que a AppBar fique atrás da barra de status
-      child: Scaffold(
-        extendBodyBehindAppBar: false, // garante que o corpo não sobreponha a AppBar
-        appBar: AppBar(
-          title: const Text("Meu app"),
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add_box),
-          onPressed: () {
-            setState(() {
-            numeroGerado = _gerarNumeroAleatorio();
-            });
-          }),
-        body: Center(
-          child: Text(numeroGerado.toString()),
-        
-        ),
-      ),
-    );
-  }
-}
+}  
