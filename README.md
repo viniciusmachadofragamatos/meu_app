@@ -1,16 +1,9 @@
 # meu_app
 Está sendo feito com base no BootCamp Santander 2023 da dio, esto publicando meu progresso e aprendizaado aqui
 
-## Conhecimentos colocados em Prática:
-
-
+## Como está o aplicativo:
 
 https://github.com/user-attachments/assets/c802ed53-ae93-4ab6-bd23-47203088ea73
-
-
-
-## Resultado:
-Como está o aplicativo:
 
 ## Observações:
 Como o objetivo é aprender, tem paginas que foram feitas para aprendizado e nao com o intuito de deixar o aplicativo em padrão para usuario, como por exemplo:
